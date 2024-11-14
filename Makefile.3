@@ -1,0 +1,36 @@
+#######
+# SIMPAGER
+#######
+CXX = g++
+CXXFLAGS = -O2
+
+
+###
+# $^ -"all the dependencies"
+# $< -"the first dependency"
+# $@ -"the target name"
+
+
+# -n do the things but it doesn't actually build
+
+simpager: main.o fifo.o lru.o opt.o rand.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+main.o: main.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+fifo.o: fifo.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+lru.o: lru.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+opt.o: opt.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+rand.o: rand.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+#Put a full path so that it doesn't use alias
+clean:
+	/bin/rm -f *.o simpager

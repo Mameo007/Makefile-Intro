@@ -1,0 +1,31 @@
+#######
+# SIMPAGER
+#######
+
+hello:
+	@echo "Hi, how are you"
+	@echo "I am having fun with makefiles."
+	@echo "Dr. Sherger is the *BEST* instructor"
+
+#First target but hello is now first target after change
+simpager: main.o fifo.o lru.o opt.o rand.o
+	g++ -o simpager main.o fifo.o lru.o opt.o rand.o
+
+main.o: main.cpp
+	g++ -c main.cpp
+
+fifo.o: fifo.cpp
+	g++ -c fifo.cpp
+
+lru.o: lru.cpp
+	g++ -c lru.cpp
+
+opt.o: opt.cpp
+	g++ -c opt.cpp
+
+rand.o: rand.cpp
+	g++ -c rand.cpp
+
+#Put a full path so that it doesn't use alias
+clean:
+	/bin/rm -f *.o simpager
